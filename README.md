@@ -13,6 +13,8 @@ Instead of using **SDXL’s VAE** which encodes images into **(B, 4, 32, 32)**, 
 - Float32 Latent Representation (SANA’s VAE) - **12GB**
 - Quantized 8-bit Latent Representation (This Dataset) - **3GB**
 
+![Image Comparison](image_comparison.png)
+
 ---
 
 ## How to Use This Dataset
