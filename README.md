@@ -2,7 +2,7 @@
 
 Original ImageNet is **138GB**, which makes it inconvenient to store and use for many applications. Inspired by [Imagenet.int8](https://huggingface.co/datasets/cloneofsimo/imagenet.int8) by Simo Ryu, I wanted to apply the same **VAE + int8 quantization approach** but using a different VAE.
 
-Instead of using **SDXL’s VAE** which encodes images into **(B, 4, 32, 32)**, I used **Google SANA’s VAE** from [this model](https://huggingface.co/mit-han-lab/dc-ae-f32c32-sana-1.1-diffusers), which encodes images into **(B, 32, 8, 8)**. This allows for **faster inference** and enables efficient **latent-space diffusion**.
+Instead of using **SDXL’s VAE** which encodes images into **(B, 4, 32, 32)**, I used **Nvidia SANA’s VAE** from [this model](https://huggingface.co/mit-han-lab/dc-ae-f32c32-sana-1.1-diffusers), which encodes images into **(B, 32, 8, 8)**. This allows for **faster inference** and enables efficient **latent-space diffusion**.
 
 ---
 
@@ -28,7 +28,7 @@ To encode ImageNet into **8-bit latent representations**, use the script:
 
     encode_imagenet.py
 
-This script processes the dataset, encodes it using **Google SANA’s VAE**, and saves the output in `imagenet_3gb.pt`.
+This script processes the dataset, encodes it using **Nvidia SANA’s VAE**, and saves the output in `imagenet_3gb.pt`.
 
 ### Decoding and Viewing a Sample Image
 
@@ -45,7 +45,7 @@ This script takes a **latent vector stored in imagenet_3gb.pt**, dequantizes it 
 Instead of storing or processing ImageNet in full resolution, this dataset lets you **work in latent space**, significantly reducing storage and compute costs. Models trained directly on these latents can take advantage of:
 - **Faster training** (working with 8×8 spatial resolution instead of 256×256)
 - **Lower VRAM usage** for generative models
-- **Compatibility with latent diffusion architectures** (like Google SANA)
+- **Compatibility with latent diffusion architectures** (like Nvidia SANA)
 
 ---
 
@@ -56,7 +56,7 @@ This dataset was inspired by [Imagenet.int8](https://huggingface.co/datasets/clo
 ```bibtex
 @misc{imagenet_3gb,
   author       = {Rotem Israeli},
-  title        = {Imagenet.3GB: Compressed ImageNet using Google SANA’s VAE},
+  title        = {Imagenet.3GB: Compressed ImageNet using Nvidia SANA’s VAE},
   year         = {2024},
   publisher    = {Hugging Face Datasets},
   url          = {https://huggingface.co/datasets/irotem98/imagenet_3gb},
